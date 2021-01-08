@@ -3,6 +3,7 @@ const { buzzwords } = require('./buzzwordList.json')
 
 const tmi = require("tmi.js");
 const client = new tmi.Client({
+	options: {debug: true},
 	connection: {
 		reconnect: true,
 		secure: true,
@@ -20,16 +21,21 @@ client.on("message", async (channel, tags, message, self) => {
 	if (self) return;
 
 	switch (tags["message-type"]) {
-        case "chat":
+		case "chat":
+			const words = [];
             buzzwords.forEach(buzzWord => {
-                if (message.toLowerCase().includes(buzzWord)) {
-                    client.say(channel, `${tags.username} said the buzzword: ${buzzWord}`)
-                }
-            });
+				if (message.toLowerCase().includes(buzzWord)) {
+					words.push(buzzWord);
+					console.log(`buzzword ${buzzWord} found`)
+					console.log(words)
+				}
+			});
+			if (words.length) {
+				client.say(channel, `${tags.username} said the buzzwords: ${words.join(', ')}`)	
+				console.log(`${tags.username} said the buzzwords: ${words.join(', ')}`)
+			}
 			break;
 	    default:
 			break;
 	}
-
-
 });
