@@ -1,0 +1,3 @@
+- Fix and Close the Twitch Phone
+- Have Twitch guests on via video
+- 
