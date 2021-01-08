@@ -9,4 +9,4 @@ This doc contains recommendations for learning materials for early in career Web
 
 ## Podcast
 - Syntax.FM
-- [codingblocks](codingbocks.net)
+- [codingblocks](codingblocks.net)
